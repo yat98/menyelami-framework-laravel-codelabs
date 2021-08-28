@@ -1,0 +1,24 @@
+{
+    "nomor_antrian": 20,
+    "nama": "Hidayat Chandra",
+    "menikah": false,
+    "hobi": [
+        "membaca",
+        "gaming"
+    ],
+    "alamat": {
+        "jalan": "Jl. H.B Jassin",
+        "city": "Gorontalo",
+        "provinsi": "Gorontalo"
+    },
+    "sosmed": [
+        {
+            "jenis": "Facebook",
+            "username": "Hidayat Chandra"
+        },
+        {
+            "jenis": "Instagram",
+            "username": "@hdytchndra"
+        }
+    ]
+}
