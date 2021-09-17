@@ -11,6 +11,7 @@ class CreditCard implements PaymentMethod
 	{
 		$this->cardNumber = $cardNumber;
 		$this->balance = $balance;
+		echo "Create credit card \n";
 	}
 
 	public function getBalance()

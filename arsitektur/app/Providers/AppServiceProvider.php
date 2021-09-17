@@ -24,13 +24,16 @@ class AppServiceProvider extends ServiceProvider
 		// $this->app->instance(PaymentMethod::class, $creditPhone);
 
 		// Contextual Binding
-		$this->app->when(Customer::class)
-			->needs(PaymentMethod::class)
-			->give(CreditPhone::class);
+		// $this->app->when(Customer::class)
+		// 	->needs(PaymentMethod::class)
+		// 	->give(CreditPhone::class);
 
-		$this->app->when(Seller::class)
-			->needs(PaymentMethod::class)
-			->give(CreditCard::class);
+		// $this->app->when(Seller::class)
+		// 	->needs(PaymentMethod::class)
+		// 	->give(CreditCard::class);
+
+		// Singleton Binding
+		$this->app->singleton(PaymentMethod::class, CreditCard::class);
 	}
 
 	/**
