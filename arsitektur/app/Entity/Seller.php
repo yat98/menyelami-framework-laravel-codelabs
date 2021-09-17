@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-class Customer
+class Seller
 {
 	private $paymentMethod;
 
