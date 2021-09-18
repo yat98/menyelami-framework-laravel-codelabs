@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,20 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::match(['get', 'post'], 'contact', function () {
+// Route::match(['get', 'post'], 'contact', function () {
+// 	$html = '<h1>Contact Page</h1>';
+// 	if (isset($_REQUEST['message'])) {
+// 		$html = 'Send message : ' . $_REQUEST['message'];
+// 	}
+
+// 	return $html;
+// });
+
+Route::any('contact', function () {
 	$html = '<h1>Contact Page</h1>';
-	if (isset($_REQUEST['message'])) {
-		$html = 'Send message : ' . $_REQUEST['message'];
+	$html .= 'The route method is ' . request()->method();
+	if (request()->isMethod('delete')) {
+		$html .= '<br> you delete the data';
 	}
 
 	return $html;
