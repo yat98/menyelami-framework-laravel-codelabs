@@ -47,3 +47,17 @@ Route::get('selamat-datang/{name?}', ['as' => 'home.welcome',
 Route::get('menu', function () {
 	return 'Visit <a href="' . route('home.welcome') . '">Selamat Datang Page</a>';
 });
+
+Route::group(['prefix' => 'dashboard'], function ($route) {
+	$route->get('settings', function () {
+		return 'dashboard > settings';
+	});
+
+	$route->get('profile', function () {
+		return 'dashboard > profile';
+	});
+
+	$route->get('inbox', function () {
+		return 'dashboard > inbox';
+	});
+});
