@@ -36,3 +36,7 @@ Route::any('contact', function () {
 
 	return $html;
 });
+
+Route::get('welcome/{name}/{from}', function ($name, $from) {
+	return 'Welcome ' . $name . ' from ' . $from . '. you are so great';
+});
