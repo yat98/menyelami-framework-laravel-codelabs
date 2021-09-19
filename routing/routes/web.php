@@ -38,6 +38,6 @@ Route::any('contact', function () {
 });
 
 Route::pattern('name', '[A-za-z]+');
-Route::get('welcome/{name}/{from}', function ($name, $from) {
-	return 'Welcome ' . $name . ' from ' . $from . '. you are so great';
+Route::get('welcome/{name?}', function ($name = 'Anonym') {
+	return 'Welcome ' . $name . '. you are so great';
 });
