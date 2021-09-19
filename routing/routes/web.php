@@ -39,4 +39,4 @@ Route::any('contact', function () {
 
 Route::get('welcome/{name}/{from}', function ($name, $from) {
 	return 'Welcome ' . $name . ' from ' . $from . '. you are so great';
-});
+})->where('name', '[A-Za-z]+');
