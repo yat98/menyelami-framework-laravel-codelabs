@@ -38,6 +38,12 @@ Route::any('contact', function () {
 });
 
 Route::pattern('name', '[A-za-z]+');
-Route::get('welcome/{name?}', function ($name = 'Anonym') {
-	return 'Welcome ' . $name . '. you are so great';
+Route::get('selamat-datang/{name?}', ['as' => 'home.welcome',
+	function ($name = 'Anonym') {
+		return 'Selamat datang ' . $name . '. anda luar biasa';
+	},
+]);
+
+Route::get('menu', function () {
+	return 'Visit <a href="' . route('home.welcome') . '">Selamat Datang Page</a>';
 });
