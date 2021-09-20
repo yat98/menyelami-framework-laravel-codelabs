@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
+// Route::get('/', function () {
+// 	return view('welcome');
+// });
 
 // Route::match(['get', 'post'], 'contact', function () {
 // 	$html = '<h1>Contact Page</h1>';
@@ -59,5 +59,25 @@ Route::group(['prefix' => 'dashboard'], function ($route) {
 
 	$route->get('inbox', function () {
 		return 'dashboard > inbox';
+	});
+});
+
+Route::group(['domain' => '{username}.rahmatawaludin.me'], function ($route) {
+	$dataUser = [
+		'yat' => [
+			'profile' => 'Software engineer',
+			'status' => ['Lorem  ipsum', 'sit dolor'],
+		],
+	];
+
+	$route->get('/', function ($username) use ($dataUser) {
+		$html = 'You are visit ' . $username . ' account <br>';
+		$html .= $dataUser[$username]['profile'];
+
+		return $html;
+	});
+
+	$route->get('status/{id}', function ($username, $id) use ($dataUser) {
+		return $username . ' status : ' . $dataUser[$username]['status'][$id];
 	});
 });
