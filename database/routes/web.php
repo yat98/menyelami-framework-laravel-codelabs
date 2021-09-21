@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
+});
+
+Route::get('list-stock', function () {
+	$begin = memory_get_usage();
+	foreach (DB::table('products')->get() as $product) {
+		if ($product->stock > 20) {
+			echo "{$product->name} : {$product->stock} <br>";
+		}
+	}
+	echo 'Total memory usage : ' . (memory_get_usage() - $begin);
+});
+
+Route::get('list-stock-chunk', function () {
+	$begin = memory_get_usage();
+	DB::table('products')->orderBy('id')->chunk(100, function ($products) {
+		foreach ($products as $product) {
+			if ($product->stock > 20) {
+				echo "{$product->name} : {$product->stock} <br>";
+			}
+		}
+	});
+	echo 'Total memory usage : ' . (memory_get_usage() - $begin);
 });
