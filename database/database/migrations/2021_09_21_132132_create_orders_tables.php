@@ -14,7 +14,7 @@ class CreateOrdersTables extends Migration
 		Schema::create('orders', function (Blueprint $table) {
 			$table->id();
 			$table->bigInteger('customer_id');
-			$table->date('paid_at');
+			$table->date('paid_at')->nullable();
 			$table->timestamps();
 		});
 
