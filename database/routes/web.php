@@ -40,7 +40,7 @@ Route::get('list-stock-chunk', function () {
 	echo 'Total memory usage : ' . (memory_get_usage() - $begin);
 });
 
-Route::get('/order-product', function () {
+Route::get('order-product', function () {
 	// Otomatis Transaksi
 	// DB::transaction(function () {
 	// 	// Tambah data order
@@ -87,4 +87,16 @@ Route::get('/order-product', function () {
 	$product = DB::table('products')->find(5);
 	echo 'Success sell product ' . $product->name . '<br>';
 	echo 'Latest stock ' . $product->stock . '<br>';
+});
+
+Route::get('customers', function () {
+	DB::connection()->enableQueryLog();
+
+	$products = DB::table('products')->get();
+	$products = DB::table('customers')->whereIn('id', [1, 4, 5])->get();
+	$customers = DB::table('customers')
+		->leftJoin('membership_types', 'customers.membership_type_id', '=', 'membership_types.id')
+		->get();
+
+	dd(DB::getQueryLog());
 });
