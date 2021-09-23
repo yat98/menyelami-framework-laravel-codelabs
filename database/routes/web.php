@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -97,6 +98,23 @@ Route::get('customers', function () {
 	$customers = DB::table('customers')
 		->leftJoin('membership_types', 'customers.membership_type_id', '=', 'membership_types.id')
 		->get();
+
+	dd(DB::getQueryLog());
+});
+
+Route::get('product', function () {
+	DB::connection()->enableQueryLog();
+
+	// DB::table('products')->where('id',1)->update(['price' => 110000000]);
+	// Cache::forget('product.lowest-price');
+
+	$product = Cache::remember('product.lowest-price', 600, function () {
+		return DB::table('products')
+			->where('price', DB::table('products')->min('price'))
+			->get();
+	});
+
+	dump($product);
 
 	dd(DB::getQueryLog());
 });
