@@ -17,7 +17,7 @@ class CreateProductsTables extends Migration
 			$table->string('description')->nullable();
 			$table->integer('price')->unsigned();
 			$table->integer('stock')->unsigned();
-			$table->timestamps();
+			// $table->timestamps();
 		});
 	}
 

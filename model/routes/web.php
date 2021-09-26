@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Customer;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,8 @@ Route::get('customer/{id}', function ($id) {
 	} catch (ModelNotFoundException $e) {
 		return 'Ooops... Customer tidak ditemukan';
 	}
+});
+
+Route::get('product/{id}', function ($id) {
+	return Product::findOrFail($id);
 });

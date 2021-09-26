@@ -10,4 +10,14 @@ class Product extends Model
 	use HasFactory;
 
 	public $timestamps = false;
+
+	// protected $hidden = [
+	// 	'description',
+	// 	'stock',
+	// ];
+
+	protected $visible = [
+		'name',
+		'price',
+	];
 }
