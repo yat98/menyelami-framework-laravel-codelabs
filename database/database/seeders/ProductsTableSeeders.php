@@ -28,11 +28,12 @@ class ProductsTableSeeders extends Seeder
 		$description = ['Tipe Manual', 'Tipe Otomatis'];
 
 		foreach ($products as $product) {
-			DB::insert('INSERT INTO products (name, description, price, stock) VALUES (:name, :description, :price, :stock)', [
+			DB::insert('INSERT INTO products (name, description, price, stock, published) VALUES (:name, :description, :price, :stock,:published)', [
 				'name' => $product,
 				'description' => $description[rand(0, 1)],
 				'price' => rand(100, 800) * 100000,
 				'stock' => rand(10, 40),
+				'published' => rand(0, 1),
 			]);
 		}
 

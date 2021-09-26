@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
 		$this->call(CustomersTableSeeder::class);
 		// $this->call(SampleChunkSeeder::class);
 		$this->call(MembershipTypesTableSeeder::class);
+		$this->call(PostsTableSeeder::class);
 	}
 }
