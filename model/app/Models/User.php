@@ -2,43 +2,38 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+	use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+	protected $appends = ['fullname'];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+	public function setPasswordAttribute($value)
+	{
+		$this->attributes['password'] = bcrypt($value);
+	}
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+	public function getFullnameAttribute()
+	{
+		return $this->firstname . ' ' . $this->lastname;
+	}
+
+	public function setBirthDateAttribute($value)
+	{
+		$this->attributes['birth_date'] = Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+	}
+
+	public function getBirthDateAttribute($value)
+	{
+		return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
+	}
+
+	public function getDates()
+	{
+		return ['created_at', 'updated_at', 'birth_date'];
+	}
 }
