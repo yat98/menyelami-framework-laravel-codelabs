@@ -27,6 +27,10 @@ class Product extends Model
 		'price',
 	];
 
+	protected $casts = [
+		'price' => 'double',
+	];
+
 	protected $dates = ['deleted_at'];
 
 	public function scopeOverstock($query)
