@@ -24,4 +24,41 @@ class Product extends Model
 	];
 
 	protected $dates = ['deleted_at'];
+
+	public function scopeOverstock($query)
+	{
+		return $query->where('stock', '>', 30);
+	}
+
+	public function scopeOverprice($query)
+	{
+		return $query->where('price', '>', 4000000);
+	}
+
+	public function scopePremium($query)
+	{
+		return $query->overstock()->overprice();
+	}
+
+	public function scopeLevel($query, $parameter)
+	{
+		switch ($parameter) {
+			case 'lux':
+				return $query->where('price', '>', 5_000_000);
+
+				break;
+			case 'mid':
+				return $query->whereBetween('price', [3_000_000, 5_000_000]);
+
+				break;
+			case 'entry':
+				return $query->where('price', '<', 3_000_000);
+
+				break;
+			default:
+				return $query;
+
+				break;
+		}
+	}
 }
