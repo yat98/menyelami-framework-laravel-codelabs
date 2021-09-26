@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Customer;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
+});
+
+Route::get('customer/{id}', function ($id) {
+	try {
+		return Customer::findOrFail($id);
+	} catch (ModelNotFoundException $e) {
+		return 'Ooops... Customer tidak ditemukan';
+	}
 });
