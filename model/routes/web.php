@@ -28,6 +28,6 @@ Route::get('customer/{id}', function ($id) {
 	}
 });
 
-Route::get('product/{id}', function ($id) {
+Route::get('product/{product}', function ($id) {
 	return Product::findOrFail($id);
 });
