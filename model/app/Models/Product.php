@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Observer\ProductObserver;
 use App\Scope\Published;
 use App\Traits\PublishedTraits;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Log;
 
 class Product extends Model
 {
@@ -68,5 +70,16 @@ class Product extends Model
 
 				break;
 		}
+	}
+
+	protected static function boot()
+	{
+		parent::boot();
+
+		static::created(function ($model) {
+			Log::info('Berhasil menambah ' . $model->name . ' Stok : ' . $model->stock);
+		});
+
+		static::observe(new ProductObserver());
 	}
 }
