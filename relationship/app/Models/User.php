@@ -46,4 +46,14 @@ class User extends Authenticatable
 	{
 		return $this->hasOne(Preference::class, 'user_id');
 	}
+
+	public function statuses()
+	{
+		return $this->hasMany(Status::class, 'user_id');
+	}
+
+	public function photo()
+	{
+		return $this->hasMany(Photo::class, 'user_id');
+	}
 }
