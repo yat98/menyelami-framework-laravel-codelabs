@@ -19,8 +19,8 @@ Route::get('/', function () {
 
 Route::get('/motivasi', function () {
 	return view('quote.motivasi')
-        ->with('penulis','Joni')
-        ->with('kalimat','Jatuh adalah cara maju yang rasanya tidak enak. Bangkit, move on! Jangan menyerah!');
+		->with('penulis', 'Joni')
+		->with('kalimat', 'Jatuh adalah cara maju yang rasanya tidak enak. Bangkit, move on! Jangan menyerah!');
 });
 
 Route::get('/inspirasi', function () {
