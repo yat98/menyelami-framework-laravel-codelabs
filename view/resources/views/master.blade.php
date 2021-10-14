@@ -10,7 +10,11 @@
 </head>
 
 <body>
-    @yield('body')
+    <div class="container">
+        <div class="row">
+            @yield('body')
+        </div>
+    </div>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,12 @@ Route::get('/motivasi', function () {
 
 Route::get('/inspirasi', function () {
 	return view('quote.inspirasi');
+});
+
+Route::get('/new-quote', function () {
+	return view('new-quote');
+});
+
+Route::post('/quote', function () {
+	dd(request()->all());
 });
