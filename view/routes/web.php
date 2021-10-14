@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Quote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,12 @@ Route::get('/inspirasi', function () {
 
 Route::get('/new-quote', function () {
 	return view('new-quote');
+});
+
+Route::get('/edit-quote/{id}', function ($id) {
+	$quote = Quote::findOrFail($id);
+
+	return view('edit-quote', compact('quote'));
 });
 
 Route::post('/quote', function () {
