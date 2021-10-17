@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,8 @@ Route::get('/contact/about', function () {
 
 Route::get('home', [HomeController::class, 'index']);
 Route::post('home', [HomeController::class, 'index']);
+
+Route::get('registrasi', function () {
+	return View::make('registrasi');
+});
+Route::post('registrasi', [HomeController::class, 'registrasi']);

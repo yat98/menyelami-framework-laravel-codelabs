@@ -17,4 +17,15 @@ class HomeController extends Controller
 
 		return "Halo {$nama}, Email Anda {$email}";
 	}
+
+	public function registrasi(Request $request)
+	{
+		if ('123' == $request->get('nomor_ktp')) {
+			$request->flashOnly('nama', 'alamat');
+
+			return redirect()->back();
+		}
+
+		return 'Berhasil Registrasi!';
+	}
 }
