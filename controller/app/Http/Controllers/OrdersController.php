@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Psr\Log\LoggerInterface as PsrLoggerInterface;
 
 class OrdersController extends Controller
 {
+	protected $log;
+
+	public function __construct(PsrLoggerInterface $log)
+	{
+		$this->log = $log;
+	}
+
 	public function index()
 	{
 		return view('orders.index');
@@ -19,7 +27,8 @@ class OrdersController extends Controller
 
 	public function store(Request $request)
 	{
-		Order::create($request->all());
+		$order = Order::create($request->all());
+		$this->log->info('Order baru telah dibuat. ID : ' . $order->id);
 
 		return redirect()->route('orders.index');
 	}
@@ -46,10 +55,11 @@ class OrdersController extends Controller
 		return redirect()->route('orders.index');
 	}
 
-	public function destroy($id)
+	public function destroy(PsrLoggerInterface $log, $id)
 	{
 		Order::findOrFail($id)
 			->delete();
+		$log->info('Order baru telah dihapus. ID : ' . $id);
 
 		return redirect()->route('orders.index');
 	}
