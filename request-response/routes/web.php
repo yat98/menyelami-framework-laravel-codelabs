@@ -34,3 +34,8 @@ Route::get('registrasi', function () {
 	return View::make('registrasi');
 });
 Route::post('registrasi', [HomeController::class, 'registrasi']);
+
+Route::get('upload-form', function () {
+	return View::make('upload-form');
+});
+Route::post('upload-profile-picture', [HomeController::class, 'uploadProfilePicture']);

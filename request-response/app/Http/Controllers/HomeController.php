@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -27,5 +28,19 @@ class HomeController extends Controller
 		}
 
 		return 'Berhasil Registrasi!';
+	}
+
+	public function uploadProfilePicture(Request $request)
+	{
+		if (!$request->hasFile('photo')) {
+			return 'Tidak ada photo yang diupload';
+		}
+
+		$photo = $request->file('photo');
+		$filename = Str::random(6) . '.' . $photo->getClientOriginalExtension();
+		$path = public_path() . '/img';
+		$photo->move($path, $filename);
+
+		return 'Berhasil upload ' . $photo->getClientOriginalName() . ' ke ' . $path . ' dengan nama file ' . $filename;
 	}
 }
