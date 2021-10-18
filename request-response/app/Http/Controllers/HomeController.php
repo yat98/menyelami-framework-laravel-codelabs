@@ -43,4 +43,18 @@ class HomeController extends Controller
 
 		return 'Berhasil upload ' . $photo->getClientOriginalName() . ' ke ' . $path . ' dengan nama file ' . $filename;
 	}
+
+	public function generateCookie()
+	{
+		return response('halo')->withCookie(cookie('api_key', 's3cret', 10));
+	}
+
+	public function testCookie(Request $request)
+	{
+		if ($request->cookie('api_key')) {
+			return 'Cookie api_key valid';
+		}
+
+		return 'Cookie api_key tidak valid';
+	}
 }

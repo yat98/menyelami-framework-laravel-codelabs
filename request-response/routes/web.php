@@ -39,3 +39,6 @@ Route::get('upload-form', function () {
 	return View::make('upload-form');
 });
 Route::post('upload-profile-picture', [HomeController::class, 'uploadProfilePicture']);
+
+Route::get('generate-cookie', [HomeController::class, 'generateCookie']);
+Route::get('test-cookie', [HomeController::class, 'testCookie']);
