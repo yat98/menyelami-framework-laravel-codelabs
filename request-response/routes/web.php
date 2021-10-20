@@ -42,3 +42,14 @@ Route::post('upload-profile-picture', [HomeController::class, 'uploadProfilePict
 
 Route::get('generate-cookie', [HomeController::class, 'generateCookie']);
 Route::get('test-cookie', [HomeController::class, 'testCookie']);
+
+Route::get('/post/memahami-laravel', function () {
+	$request = app('Illuminate\Http\Request');
+	dump($request->root());
+	dump($request->url());
+	dump($request->fullUrl());
+	dump($request->path());
+	dump($request->is('post/*'));
+
+	return $request->method();
+});
