@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 
@@ -52,4 +53,34 @@ Route::get('/post/memahami-laravel', function () {
 	dump($request->is('post/*'));
 
 	return $request->method();
+});
+
+Route::get('custom-header', function () {
+	return response('Berhasil membuat custom header', 404)
+		->header('Made-By', '@hdytchndra');
+});
+
+Route::get('buku', function () {
+	return redirect('https://leanpub.com/u/rahmatawaludin');
+});
+
+Route::get('daftar-buku', function () {
+	return response()->json([
+		['judul' => 'Seminggu Belajar Laravel', 'url' => 'https://leanpub.com/seminggubelajarlaravel'],
+		['judul' => 'Menyelami Framework Laravel', 'url' => 'https://leanpub.com/bukularavel'],
+	]);
+});
+
+Route::get('daftar-penyanyi', function () {
+	return response()->json([
+		'error' => 'Hidayat bukan penyanyi',
+	], 403);
+});
+
+Route::get('daftar-motivasi', function () {
+	return response()->download(public_path() . '/img/motivasi.jpg');
+});
+
+Route::get('menguasai-go-lang', function () {
+	return response()->jsonNotFound('Buku Go Belum Ditulis');
 });
