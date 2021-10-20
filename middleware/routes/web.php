@@ -19,4 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('api-test', [HomeController::class, 'apiTest'])
-	->middleware('api-token');
+	->middleware(['api-token']);
+
+Route::get('log-test', [HomeController::class, 'logTest'])
+	->middleware(['api-token', 'access-log']);
