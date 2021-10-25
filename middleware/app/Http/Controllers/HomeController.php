@@ -14,8 +14,15 @@ class HomeController extends Controller
 
 	public function logTest(Request $request)
 	{
-		$totalAccess = DB::table('access_logs')->where('path', $request->path())->count();
+		$totalSuccess = DB::table('access_logs')
+			->where('path', $request->path())
+			->where('status', 'success')
+			->count();
+		$totalFailed = DB::table('access_logs')
+			->where('path', $request->path())
+			->where('status', 'failed')
+			->count();
 
-		return 'Halaman ini telah diakses sebanyak ' . $totalAccess . ' kali';
+		return 'Halaman ini telah diakses sebanyak ' . $totalSuccess . ' kali sukses dan ' . $totalFailed . ' kali gagal';
 	}
 }
