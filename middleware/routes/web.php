@@ -18,8 +18,13 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::group(['middleware' => ['api-token', 'access-log']], function () {
-	Route::get('api-test', [HomeController::class, 'apiTest']);
+// Route::group(['middleware' => ['api-token', 'access-log']], function () {
+// 	Route::get('api-test', [HomeController::class, 'apiTest']);
 
-	Route::get('log-test', [HomeController::class, 'logTest']);
-});
+// 	Route::get('log-test', [HomeController::class, 'logTest']);
+// });
+
+Route::get('admin-test', [HomeController::class, 'adminTest'])
+	->middleware('api-token:admin');
+Route::get('editor-test', [HomeController::class, 'editorTest'])
+	->middleware('api-token:editor');

@@ -25,4 +25,14 @@ class HomeController extends Controller
 
 		return 'Halaman ini telah diakses sebanyak ' . $totalSuccess . ' kali sukses dan ' . $totalFailed . ' kali gagal';
 	}
+
+	public function adminTest()
+	{
+		return 'Berhasil berhasil mengakses resource admin';
+	}
+
+	public function editorTest()
+	{
+		return 'Berhasil berhasil mengakses resource editor';
+	}
 }
