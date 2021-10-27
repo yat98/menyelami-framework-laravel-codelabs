@@ -35,4 +35,14 @@ class HomeController extends Controller
 	{
 		return 'Berhasil berhasil mengakses resource editor';
 	}
+
+	public function showPost(Request $request, $post_id)
+	{
+		return $request->get('post');
+	}
+
+	public function showCustomer(Request $request, $customer_id)
+	{
+		return $request->get('customer');
+	}
 }

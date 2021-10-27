@@ -28,3 +28,9 @@ Route::get('admin-test', [HomeController::class, 'adminTest'])
 	->middleware('api-token:admin');
 Route::get('editor-test', [HomeController::class, 'editorTest'])
 	->middleware('api-token:editor');
+
+Route::get('posts/{post_id}', [HomeController::class, 'showPost'])
+	->middleware('transform-resource:post');
+
+Route::get('customers/{customer_id}', [HomeController::class, 'showCustomer'])
+	->middleware('transform-resource:customer');
