@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('access-log', ['only' => ['about']]);
+	}
+
 	public function apiTest()
 	{
 		return 'Berhasil mengakses API';
@@ -44,5 +49,10 @@ class HomeController extends Controller
 	public function showCustomer(Request $request, $customer_id)
 	{
 		return $request->get('customer');
+	}
+
+	public function about()
+	{
+		return 'Ini tentang kita...';
 	}
 }

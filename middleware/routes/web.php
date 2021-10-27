@@ -34,3 +34,5 @@ Route::get('posts/{post_id}', [HomeController::class, 'showPost'])
 
 Route::get('customers/{customer_id}', [HomeController::class, 'showCustomer'])
 	->middleware('transform-resource:customer');
+
+Route::get('about', [HomeController::class, 'about']);
