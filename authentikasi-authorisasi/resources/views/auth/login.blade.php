@@ -95,7 +95,10 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a href="{{ url('auth/facebook') }}">Login with Facebook</a>
+                            <a href="{{ url('auth/facebook') }}" class="btn btn-primary btn-block text-white">Login with
+                                Facebook</a>
+                            <a href="{{ url('auth/github') }}" class="btn btn-dark btn-block text-white">Login with
+                                Github</a>
                         </div>
                     </div>
                 </div>
