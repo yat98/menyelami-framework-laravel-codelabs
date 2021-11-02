@@ -93,6 +93,10 @@
                                 </div>
                             </div>
                         </form>
+                        <hr>
+                        <div class="text-center">
+                            <a href="{{ url('auth/facebook') }}">Login with Facebook</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/setting', function () {
 	return 'Menampilkan halaman setting user';
 })->middleware('auth');
+
+Route::get('auth/{provider}', [LoginController::class, 'redirectToProvider']);
+Route::get('auth/{provider}/callback', [LoginController::class, 'providerCallback']);
