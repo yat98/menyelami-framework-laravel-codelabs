@@ -69,6 +69,7 @@ class LoginController extends Controller
 				'name' => $account->name,
 				'email' => $account->email,
 				'avatar' => $account->avatar,
+				'role' => 'participant',
 			]);
 
 			Auth::login($user, true);

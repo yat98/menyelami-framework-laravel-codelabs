@@ -33,3 +33,11 @@ Route::get('/setting', function () {
 
 Route::get('auth/{provider}', [LoginController::class, 'redirectToProvider']);
 Route::get('auth/{provider}/callback', [LoginController::class, 'providerCallback']);
+
+Route::get('event', function () {
+	return 'berhasil mengakses halaman event';
+})->middleware(['auth', 'role:organizer']);
+
+Route::get('event-history', function () {
+	return 'berhasil mengakses history event';
+})->middleware(['auth', 'role:participant']);

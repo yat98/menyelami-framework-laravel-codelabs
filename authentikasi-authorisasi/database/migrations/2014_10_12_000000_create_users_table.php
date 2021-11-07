@@ -19,9 +19,11 @@ class CreateUsersTable extends Migration
 			$table->string('email')->unique();
 			$table->string('password', 60)->nullable();
 
-			$table->string('provider');
+			$table->string('provider')->nullable();
 			$table->string('provider_id')->unique()->nullable();
-			$table->string('avatar');
+			$table->string('avatar')->nullable();
+
+			$table->string('role');
 
 			$table->timestamp('email_verified_at')->nullable();
 			$table->boolean('suspend')->default(0);
