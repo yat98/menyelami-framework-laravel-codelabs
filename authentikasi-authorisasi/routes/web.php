@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route::get('/home', function () {
 // 	return 'Anda berhasil login';
 // })->name('home')
@@ -41,3 +42,15 @@ Route::get('event', function () {
 Route::get('event-history', function () {
 	return 'berhasil mengakses history event';
 })->middleware(['auth', 'role:participant']);
+
+Route::get('settings', [HomeController::class, 'settings'])
+	->middleware('auth');
+
+Route::get('premium', [HomeController::class, 'premium'])
+	->middleware(['auth']);
+
+Route::get('edit-event/{id}', [HomeController::class, 'editEvent']);
+
+Route::get('join-event/{id}', [HomeController::class, 'joinEvent']);
+
+Route::get('edit-organization/{id}', [HomeController::class, 'editOrganization']);

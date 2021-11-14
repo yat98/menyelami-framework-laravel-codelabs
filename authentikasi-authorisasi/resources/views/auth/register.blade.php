@@ -67,8 +67,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="role"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                                 <div class="col-md-6">
                                     <select name="role" id="role" class="form-control">
@@ -78,6 +77,26 @@
                                     </select>
 
                                     @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="membership"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('membership') }}</label>
+
+                                <div class="col-md-6">
+                                    <select name="membership" id="membership" class="form-control">
+                                        <option>-- Pilih Membership --</option>
+                                        <option value="silver">Silver</option>
+                                        <option value="gold">Gold</option>
+                                        <option value="platinum">Platinum</option>
+                                    </select>
+
+                                    @error('membership')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

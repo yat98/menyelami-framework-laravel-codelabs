@@ -70,6 +70,7 @@ class LoginController extends Controller
 				'email' => $account->email,
 				'avatar' => $account->avatar,
 				'role' => 'participant',
+				'membership' => 'silver',
 			]);
 
 			Auth::login($user, true);

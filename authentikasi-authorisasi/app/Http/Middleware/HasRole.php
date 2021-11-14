@@ -16,7 +16,7 @@ class HasRole
 	 */
 	public function handle(Request $request, Closure $next, $role)
 	{
-		if ($role == $request->user()->role) {
+		if ($request->user()->can('be-' . $role)) {
 			return $next($request);
 		}
 

@@ -52,6 +52,7 @@ class RegisterController extends Controller
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 			'password' => ['required', 'string', 'min:8', 'confirmed'],
 			'role' => ['required', 'in:organizer,participant'],
+			'membership' => ['required', 'in:silver,gold,platinum'],
 		]);
 	}
 
@@ -68,6 +69,7 @@ class RegisterController extends Controller
 			'email' => $data['email'],
 			'password' => Hash::make($data['password']),
 			'role' => isset($data['role']) ? $data['role'] : 'participant',
+			'membership' => isset($data['membership']) ? $data['membership'] : 'silver',
 		]);
 	}
 }
