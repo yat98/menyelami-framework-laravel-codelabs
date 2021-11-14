@@ -7,9 +7,12 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use InvalidArgumentException;
 use Laravel\Socialite\Facades\Socialite;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
 {
@@ -81,5 +84,22 @@ class LoginController extends Controller
 		} catch (ClientException $e) {
 			return redirect('login');
 		}
+	}
+
+	public function getToken(Request $request)
+	{
+		$credentials = $request->only('email', 'password');
+
+		try {
+			if (!$token = JWTAuth::attempt($credentials)) {
+				return response()->json([
+					'error' => 'invalid_credentials',
+				], 401);
+			}
+		} catch (JWTException $e) {
+			return response()->json(['error' => 'could_not_create_token'], 500);
+		}
+
+		return response()->json(compact('token'));
 	}
 }

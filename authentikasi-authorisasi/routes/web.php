@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -54,3 +55,10 @@ Route::get('edit-event/{id}', [HomeController::class, 'editEvent']);
 Route::get('join-event/{id}', [HomeController::class, 'joinEvent']);
 
 Route::get('edit-organization/{id}', [HomeController::class, 'editOrganization']);
+
+Route::group(['prefix' => 'api'], function () {
+	Route::post('authenticate', [LoginController::class, 'getToken']);
+	Route::get('users', function () {
+		return User::all();
+	})->middleware('jwt.auth');
+});
